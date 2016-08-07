@@ -1,0 +1,11 @@
+<p><%= notice %></p>
+
+<h1>写真一覧</h1>
+
+<% @pictures.each do |picture| %>
+  <p>コメント:<%= picture.content %></p>
+  <%= link_to "写真を編集する", edit_picture_path(picture.id) %>
+  <%= link_to "写真を削除する", picture_path(picture), method: :delete, data: {confirm: '本当に削除しても？'} %>
+<% end %>
+
+<%= link_to "写真を投稿する", new_picture_path %>
