@@ -1,13 +1,19 @@
 <div class="container">
   <div class="wrapper col-md-8 col-md-offset-2 col-sm-10">
     <p><%= notice %></p>
+
+    <%= link_to "写真を投稿する", new_picture_path %>
+
     <h1>写真一覧</h1>
     <% @pictures.each do |picture| %>
       <p>コメント:<%= picture.content %></p>
+      <p>[ユーザID]<%= picture.user_id %></p>
+      <p>[ユーザ名]<%= picture.user.name if picture.user %></p>
+
       <%= link_to "写真を編集する", edit_picture_path(picture.id) %>
       <%= link_to "写真を削除する", picture_path(picture), method: :delete, data: {confirm: '本当に削除しても？'} %>
     <% end %>
     <br>
-    <%= link_to "写真を投稿する", new_picture_path %>
+
   </div>
 </div>
