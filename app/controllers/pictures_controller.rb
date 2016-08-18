@@ -3,8 +3,8 @@ class PicturesController < ApplicationController
   before_action :set_picture, only:[:edit, :update, :destroy]
 
   def index
-    @pictures = Picture.all
-    
+    @pictures = Picture.order("id DESC")
+
   end
 
   def new
@@ -45,7 +45,7 @@ class PicturesController < ApplicationController
 
   private
     def pictures_params
-      params.require(:picture).permit(:content)
+      params.require(:picture).permit(:content, :image, :image_cache)
     end
 
     def set_picture
