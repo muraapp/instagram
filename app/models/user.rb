@@ -1,12 +1,10 @@
 class User < ActiveRecord::Base
-  has_many :pictures, :dependent => :delete_all
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable
 
-  mount_uploader :avatar, AvatarUploader
-
+  has_many :pictures, :dependent => :delete_all
 
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(provider: auth.provider, uid: auth.uid).first
@@ -47,6 +45,8 @@ class User < ActiveRecord::Base
   def self.create_unique_string
     SecureRandom.uuid
   end
+
+  mount_uploader :avatar, AvatarUploader
 
   def update_without_current_password(params, *options)
     params.delete(:current_password)
