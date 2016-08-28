@@ -7,11 +7,18 @@
     <h1>写真一覧</h1>
     <% @pictures.each do |picture| %>
       <div class="row">
+        <% if picture.image? %>
+            <%= image_tag picture.image.url %>
+        <% end %>
 
         <p>コメント:<%= picture.content %></p>
+
         <p>[ユーザID]<%= picture.user_id %></p>
         <p>[ユーザ名]<%= picture.user.name if picture.user %></p>
-        <p><%= image_tag picture.image.url if picture.image? %></p>
+        <div class="prof-img">
+          <p><%= profile_img(picture.user) if profile_img(picture.user) %></p>
+        </div>
+
         <%= link_to "写真を編集する", edit_picture_path(picture.id),class: 'btn btn-default btn-sm btn-success'  %>
         <%= link_to "写真を削除する", picture_path(picture), method: :delete, data: {confirm: '本当に削除しても？' },class: 'btn btn-default btn-sm btn-danger' %>
       </div>

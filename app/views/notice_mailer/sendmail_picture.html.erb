@@ -1,5 +1,5 @@
 <h1>Instagramに新しく写真が投稿されました！</h1>
 
-<p>
-  content: <%= @picture.content %>
-</p>
+<p>content: <%= @picture.content %></p>
+
+<p>image: <%= @picture.image_url if @picture.image? %></p>

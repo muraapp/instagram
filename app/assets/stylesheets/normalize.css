@@ -418,3 +418,11 @@ textarea {
   -webkit-appearance: button; /* 1 */
   font: inherit; /* 2 */
 }
+
+image{
+    max-width: 100%;
+}
+
+.prof-img{
+  max-width: 10%;
+}
